@@ -1,6 +1,11 @@
+let currentPage = 1;
+let loadingImages = false;
 
 document.querySelector('button').addEventListener('click', async () => {
    
+    //clear
+    
+
     // hämta bilder 
     let images = await getImages();
 
@@ -16,7 +21,7 @@ async function getImages() {
     let text = document.querySelector('#text').value;
     let method = 'flickr.photos.search';
 
-    let url = `${baseUrl}?method=${method}&api_key=${apiKey}&text=${text}&format=json&nojsoncallback=1`
+    let url = `${baseUrl}?method=${method}&api_key=${apiKey}&text=${text}&page=${currentPage}&format=json&nojsoncallback=1`
 
     try {
         let resp = await fetch(url);
@@ -76,4 +81,25 @@ function imgUrl(img, size) {
 }
 
 
+window.onscroll = function() {
+    let doc = document.documentElement;
+    let offset = doc.scrollTop + window.outerHeight;
+    let height = doc.offsetHeight;
 
+    if (offset >= height) {
+        console.log('At bottom');
+
+        if(!loadingImages) {
+            nextPage();
+        }
+    }
+}
+
+async function nextPage() {
+    loadingImages = true;
+    currentPage++;
+    let images = await getImages();
+
+    updateUI(images);
+    loadingImages = false;
+} 
