@@ -4,7 +4,8 @@ let loadingImages = false;
 document.querySelector('button').addEventListener('click', async () => {
    
     //clear
-    
+    document.querySelector('main').innerHTML = "";
+    currentPage = 1;
 
     // hämta bilder 
     let images = await getImages();
