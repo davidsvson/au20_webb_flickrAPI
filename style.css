@@ -1,0 +1,56 @@
+.input-field {
+    border: 1px solid lightblue;
+    font-size: 16px;
+    margin: 1rem;
+}
+
+.button {
+    border: lightblue;
+    background: lightblue;
+    color: white;
+    border-radius: 999rem;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay.show {
+    display: flex;
+}
+
+#overlay figure {
+    max-width: 50rem;
+}
+
+#overlay figure img {
+    width: 100%;
+}
+
+#overlay figure figcaption {
+    color: white;
+}
+
+
+
